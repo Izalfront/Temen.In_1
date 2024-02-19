@@ -2,14 +2,6 @@ package com.example.temenin_1
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Chat
-import androidx.compose.material.icons.rounded.History
-import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.Notifications
-import androidx.compose.material.icons.rounded.Person
-import androidx.compose.material.icons.rounded.Wallet
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -22,7 +14,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.temenin_1.data.BottomNavigation
 
 val items = listOf(
@@ -68,13 +59,23 @@ fun BottomNavigationBar(){
                     icon = { 
                         Icon(painter = painterResource(id = item.icon),
                             contentDescription = item.title,
-                            tint = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                            tint = if (index == 0) {
+                                MaterialTheme.colorScheme.primary
+                            } else {
+                                MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                            }
                         )
                     },
                     label = {
                         Text(text = item.title,
-                            color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f))
-                    }
+                            color = if (index == 0 ){
+                                MaterialTheme.colorScheme.primary
+                            }else{
+                                MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
+                            }
+                        )
+                    },
+                    modifier = Modifier.background(Color.Transparent)
                 )
             }
 
