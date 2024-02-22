@@ -1,6 +1,7 @@
 package com.example.temenin_1
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -27,6 +28,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.temenin_1.ui.theme.Female
+import com.example.temenin_1.ui.theme.Level
+import com.example.temenin_1.ui.theme.Online
 // Color import
 import com.example.temenin_1.ui.theme.Pink40
 
@@ -91,7 +95,7 @@ fun CardJasaTemenin(){
                             )
                         )
                         Text(text = "Online",
-                            color = MaterialTheme.colorScheme.primary,
+                            color = Online,
                             style = TextStyle(
                                 fontWeight = FontWeight.Normal,
                                 fontSize = 12.sp
@@ -106,21 +110,22 @@ fun CardJasaTemenin(){
                     style = TextStyle(fontWeight = FontWeight.Normal, fontSize = 12.sp)
                     )
 //                konten LEVEL dan RATING
-                    Row (){
+                    Row (modifier = Modifier.padding(bottom = 12.dp)){
 //                        LEVEL penjual
                         Text(modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
-                            .background(Pink40,shape = RoundedCornerShape(4.dp))
-                            .padding(6.dp),
+                            .background(Level,shape = RoundedCornerShape(4.dp))
+                            .padding(8.dp),
                             text = "Level 24",
                             color = Color.White,
-                            style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 12.sp))
+                            style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 10.sp))
 //                        RATING penjual
                         Text(modifier = Modifier.padding(vertical = 6.dp)
-                            .background(MaterialTheme.colorScheme.primary,shape = RoundedCornerShape(4.dp))
-                            .padding(6.dp),
+                            .background(Color.White,shape = RoundedCornerShape(4.dp))
+                                    .border(1.dp, Female, shape = RoundedCornerShape(4.dp))
+                            .padding(8.dp),
                             text = "Rating 5.4 (50)",
-                            color = Color.White,
-                            style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 12.sp))
+                            color = Female,
+                            style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 10.sp))
                     }
                 }
             }
