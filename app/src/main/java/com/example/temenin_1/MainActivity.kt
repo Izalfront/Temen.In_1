@@ -21,7 +21,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TemenIn_1Theme {
-
+                Scaffold (
+                    bottomBar = { BottomNavigationBar() }
+                ){
+                        padding ->
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(padding)
+                    ){
+                        Search()
+                        Gender()
+                        Spacer(modifier = Modifier.padding(top = 60.dp))
+                        CardJasaTemenin()
+                    }
+                }
             }
         }
     }
@@ -29,7 +43,7 @@ class MainActivity : ComponentActivity() {
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun TemeninPreview() {
     TemenIn_1Theme {
         Scaffold (
             bottomBar = { BottomNavigationBar() }
