@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -28,27 +29,68 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.temenin_1.data.Temenin
+import com.example.temenin_1.data.TemeninData
 import com.example.temenin_1.ui.theme.Female
 import com.example.temenin_1.ui.theme.Level
 import com.example.temenin_1.ui.theme.Online
 // Color import
 import com.example.temenin_1.ui.theme.Pink40
 
-//val temenin = listOf(
-//    Temenin(
-//        image = R.drawable.cewe,
-//        name = "Ayu",
-//        desc = "desksripsi penjual untuk menarik minat...",
-//        level = 21,
-//        rating = 4.5,
-//        order = 32
-//    )
-//)
+val temenin = listOf(
+    Temenin(
+        image = R.drawable.testing,
+        name = "Ayu",
+        desc = "desksripsi penjual untuk menarik minat...",
+        level = 21,
+        rating = 4.5,
+        order = 32
+    ),
+    Temenin(
+        image = R.drawable.testing,
+        name = "Ayu",
+        desc = "desksripsi penjual untuk menarik minat...",
+        level = 21,
+        rating = 4.5,
+        order = 32
+    ),
+    Temenin(
+        image = R.drawable.testing,
+        name = "Ayu",
+        desc = "desksripsi penjual untuk menarik minat...",
+        level = 21,
+        rating = 4.5,
+        order = 32
+    ),
+    Temenin(
+        image = R.drawable.testing,
+        name = "Ayu",
+        desc = "desksripsi penjual untuk menarik minat...",
+        level = 21,
+        rating = 4.5,
+        order = 32
+    ),
+    Temenin(
+        image = R.drawable.testing,
+        name = "Ayu",
+        desc = "desksripsi penjual untuk menarik minat...",
+        level = 21,
+        rating = 4.5,
+        order = 32
+    ),
+    Temenin(
+        image = R.drawable.testing,
+        name = "Ayu",
+        desc = "desksripsi penjual untuk menarik minat...",
+        level = 21,
+        rating = 4.5,
+        order = 32
+    )
+)
 
 @Preview(showBackground = true)
 @Composable
-fun CardJasaTemenin(){
-
+fun SectionCard(){
     Column (
         modifier = Modifier
             .padding(horizontal = 12.dp)
@@ -61,6 +103,19 @@ fun CardJasaTemenin(){
             color = MaterialTheme.colorScheme.onBackground
         )
         Spacer(modifier = Modifier.padding(top = 12.dp))
+        LazyColumn() {
+            items(TemeninData.temenin.size) { index ->
+                CardJasaTemenin(index)
+            }
+        }
+
+    }
+}
+
+@Composable
+fun CardJasaTemenin(index: Int){
+        val cardtemenin  = temenin[index]
+
         Card(
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.04f),
@@ -74,8 +129,8 @@ fun CardJasaTemenin(){
                 Image( modifier = Modifier
                     .size(120.dp)
                     .fillMaxSize(),
-                    painter = painterResource(id = R.drawable.testing),
-                    contentDescription = ""
+                    painter = painterResource(id = cardtemenin.image),
+                    contentDescription = cardtemenin.name
                 )
 //              nama dan status penjual
                 Column{
@@ -85,7 +140,7 @@ fun CardJasaTemenin(){
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween){
                         Text(
-                            text = "Cici",
+                            text = cardtemenin.name,
                             style = TextStyle(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp
@@ -99,27 +154,29 @@ fun CardJasaTemenin(){
                             )
                         )
                     }
-//                deskripsi penjual
+//                Deskripsi Penjual
                 Text(
                     modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-                    text = "desksripsi penjual untuk menarik minat...",
+                    text = cardtemenin.desc,
                     color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.8f),
                     style = TextStyle(fontWeight = FontWeight.Normal, fontSize = 12.sp)
                     )
-//                konten LEVEL dan RATING
+//                Konten LEVEL dan RATING
                     Row (modifier = Modifier.padding(bottom = 12.dp)){
-//                        LEVEL penjual
-                        Text(modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
-                            .background(Level,shape = RoundedCornerShape(4.dp))
+//                        LEVEL Penjual
+                        Text(modifier = Modifier
+                            .padding(horizontal = 10.dp, vertical = 6.dp)
+                            .background(Level, shape = RoundedCornerShape(4.dp))
                             .padding(8.dp),
-                            text = "Level 24",
+                            text = "Level ${cardtemenin.level.toString()}",
                             color = Color.White,
                             style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 10.sp))
-//                        RATING penjual
-                        Text(modifier = Modifier.padding(vertical = 6.dp)
-                            .background(Color.White,shape = RoundedCornerShape(4.dp))
+//                        RATING Penjual
+                        Text(modifier = Modifier
+                            .padding(vertical = 6.dp)
+                            .background(Color.White, shape = RoundedCornerShape(4.dp))
                             .padding(8.dp),
-                            text = "Rating 5.4 (50)",
+                            text = "Rate ${cardtemenin.rating.toString()}",
                             color = Female,
                             style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 10.sp))
                     }
@@ -127,139 +184,5 @@ fun CardJasaTemenin(){
             }
         }
         Spacer(modifier = Modifier.padding(top = 12.dp))
-//        ----------
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.04f),
-            ),
-            modifier = Modifier
-                .clickable { }
-                .wrapContentWidth()
 
-        ) {
-            Row() {
-                Image( modifier = Modifier
-                    .size(120.dp)
-                    .fillMaxSize(),
-                    painter = painterResource(id = R.drawable.testing),
-                    contentDescription = ""
-                )
-//              nama dan status penjual
-                Column{
-                    Row (modifier = Modifier
-                        .padding(horizontal = 10.dp, vertical = 10.dp)
-                        .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween){
-                        Text(
-                            text = "Cici",
-                            style = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
-                            )
-                        )
-                        Text(text = "Online",
-                            color = Online,
-                            style = TextStyle(
-                                fontWeight = FontWeight.Normal,
-                                fontSize = 12.sp
-                            )
-                        )
-                    }
-//                deskripsi penjual
-                    Text(
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-                        text = "desksripsi penjual untuk menarik minat...",
-                        color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.8f),
-                        style = TextStyle(fontWeight = FontWeight.Normal, fontSize = 12.sp)
-                    )
-//                konten LEVEL dan RATING
-                    Row (modifier = Modifier.padding(bottom = 12.dp)){
-//                        LEVEL penjual
-                        Text(modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
-                            .background(Level,shape = RoundedCornerShape(4.dp))
-                            .padding(8.dp),
-                            text = "Level 24",
-                            color = Color.White,
-                            style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 10.sp))
-//                        RATING penjual
-                        Text(modifier = Modifier.padding(vertical = 6.dp)
-                            .background(Color.White,shape = RoundedCornerShape(4.dp))
-                            .padding(8.dp),
-                            text = "Rating 5.4 (50)",
-                            color = Female,
-                            style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 10.sp))
-                    }
-                }
-            }
-        }
-        Spacer(modifier = Modifier.padding(top = 12.dp))
-//        ------------
-        Card(
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.04f),
-            ),
-            modifier = Modifier
-                .clickable { }
-                .wrapContentWidth()
-
-        ) {
-            Row() {
-                Image( modifier = Modifier
-                    .size(120.dp)
-                    .fillMaxSize(),
-                    painter = painterResource(id = R.drawable.testing),
-                    contentDescription = ""
-                )
-//              nama dan status penjual
-                Column{
-                    Row (modifier = Modifier
-                        .padding(horizontal = 10.dp, vertical = 10.dp)
-                        .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween){
-                        Text(
-                            text = "Cici",
-                            style = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
-                            )
-                        )
-                        Text(text = "Online",
-                            color = Online,
-                            style = TextStyle(
-                                fontWeight = FontWeight.Normal,
-                                fontSize = 12.sp
-                            )
-                        )
-                    }
-//                deskripsi penjual
-                    Text(
-                        modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
-                        text = "desksripsi penjual untuk menarik minat...",
-                        color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.8f),
-                        style = TextStyle(fontWeight = FontWeight.Normal, fontSize = 12.sp)
-                    )
-//                konten LEVEL dan RATING
-                    Row (modifier = Modifier.padding(bottom = 12.dp)){
-//                        LEVEL penjual
-                        Text(modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp)
-                            .background(Level,shape = RoundedCornerShape(4.dp))
-                            .padding(8.dp),
-                            text = "Level 24",
-                            color = Color.White,
-                            style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 10.sp))
-//                        RATING penjual
-                        Text(modifier = Modifier.padding(vertical = 6.dp)
-                            .background(Color.White,shape = RoundedCornerShape(4.dp))
-                            .padding(8.dp),
-                            text = "Rating 5.4 (50)",
-                            color = Female,
-                            style = TextStyle(fontWeight = FontWeight.SemiBold, fontSize = 10.sp))
-                    }
-                }
-            }
-        }
-        Spacer(modifier = Modifier.padding(top = 12.dp))
     }
-}
