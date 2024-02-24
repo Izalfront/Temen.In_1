@@ -184,5 +184,4 @@ fun CardJasaTemenin(index: Int){
             }
         }
         Spacer(modifier = Modifier.padding(top = 12.dp))
-
-    }
+}
